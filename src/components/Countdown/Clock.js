@@ -36,7 +36,7 @@ class Clock extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="clock">
         <span className="marginRight">{this.leadingZero(this.state.days)} days</span>
         <span className="marginRight">{this.leadingZero(this.state.hours)} hours</span>
         <span className="marginRight">{this.leadingZero(this.state.minutes)} minutes</span>
