@@ -20,6 +20,10 @@ class Clock extends React.Component {
     setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
   }
 
+  leadingZero(num) {
+    return num < 10 ? `0${num}` : num;
+  }
+
   // The time left until the passed date
   getTimeUntil(deadline) {
     const time = Date.parse(deadline) - Date.parse(new Date());
@@ -33,10 +37,10 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <span className="marginRight">{this.state.days} days</span>
-        <span className="marginRight">{this.state.hours} hours</span>
-        <span className="marginRight">{this.state.minutes} minutes</span>
-        <span className="marginRight">{this.state.seconds} seconds</span>
+        <span className="marginRight">{this.leadingZero(this.state.days)} days</span>
+        <span className="marginRight">{this.leadingZero(this.state.hours)} hours</span>
+        <span className="marginRight">{this.leadingZero(this.state.minutes)} minutes</span>
+        <span className="marginRight">{this.leadingZero(this.state.seconds)} seconds</span>
       </div>
     );
   }
