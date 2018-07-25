@@ -3,6 +3,13 @@ import { Button, Form, FormControl } from "react-bootstrap";
 import "./Reminder.css";
 
 export default class Reminder extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      text: ''
+    }
+  }
+
   render() {
     return (
       <div>
