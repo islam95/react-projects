@@ -1,4 +1,4 @@
 ## My React Projects
 
-- Countdown
-- 
+- Countdown component
+- Reminder with Redux
