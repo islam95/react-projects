@@ -20,6 +20,7 @@ class Clock extends React.Component {
     setInterval(() => this.getTimeUntil(this.props.deadline), 1000);
   }
 
+  // Adding a leading zero to the number less than 10
   leadingZero(num) {
     return num < 10 ? `0${num}` : num;
   }
