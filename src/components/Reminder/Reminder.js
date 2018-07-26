@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addReminder } from "../../redux/actions/reminderActions";
+import { addReminder, deleteReminder } from "../../redux/actions/reminderActions";
 import "./Reminder.css";
 
 class Reminder extends Component {
@@ -15,11 +15,15 @@ class Reminder extends Component {
   renderReminders() {
     const { reminders } = this.props;
     return (
-      <ul className="list-text-left list-group col-sm-6">
+      <ul className="list-text-left list-group col-sm-5">
         {reminders.map(reminder => {
           return (
             <li key={reminder.id} className="list-group-item">
-              <div>{reminder.text}</div>
+              <div className="list-item">{reminder.text}</div>
+              <div 
+                className="list-item delete-butto"
+                onClick={() => this.props.onDeleteReminder(reminder.id)}
+              >&#x2715;</div>
             </li>
           );
         })}
@@ -58,7 +62,8 @@ const mapStateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    onAddReminder: text => dispatch(addReminder(text))
+    onAddReminder: text => dispatch(addReminder(text)),
+    onDeleteReminder: id => dispatch(deleteReminder(id))
   };
 };
 
