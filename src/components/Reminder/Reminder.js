@@ -15,7 +15,7 @@ class Reminder extends Component {
   renderReminders() {
     const { reminders } = this.props;
     return (
-      <ul className="list-group col-md-4">
+      <ul className="list-text-left list-group col-sm-6">
         {reminders.map(reminder => {
           return (
             <li key={reminder.id} className="list-group-item">
@@ -29,9 +29,9 @@ class Reminder extends Component {
 
   render() {
     return (
-      <div>
+      <div className="reminder">
         <h1>Reminder</h1>
-        <Form inline>
+        <Form className="reminder-form" inline>
           <FormControl
             className="marginRight"
             placeholder="I have to..."
