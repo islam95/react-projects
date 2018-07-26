@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
-import { addReminder, deleteReminder } from "../../redux/actions/reminderActions";
+import {
+  addReminder,
+  deleteReminder
+} from "../../redux/actions/reminderActions";
 import "./Reminder.css";
 
 class Reminder extends Component {
@@ -20,15 +23,22 @@ class Reminder extends Component {
           return (
             <li key={reminder.id} className="list-group-item">
               <div className="list-item">{reminder.text}</div>
-              <div 
+              <div
                 className="list-item delete-butto"
                 onClick={() => this.props.onDeleteReminder(reminder.id)}
-              >&#x2715;</div>
+              >
+                &#x2715;
+              </div>
             </li>
           );
         })}
       </ul>
     );
+  }
+
+  onKeyEnter(e) {
+    e.preventDefault();
+    this.props.onAddReminder(this.state.text);
   }
 
   render() {
@@ -40,6 +50,7 @@ class Reminder extends Component {
             className="marginRight"
             placeholder="I have to..."
             onChange={e => this.setState({ text: e.target.value })}
+            onKeyPress={e => (e.key === "Enter" ? this.onKeyEnter(e) : null)}
           />
           <Button
             bsStyle="success"

@@ -18,6 +18,11 @@ class Countdown extends React.Component {
     });
   }
 
+  onKeyEnter(e) {
+    e.preventDefault();
+    this.changeDeadline();
+  }
+
   render() {
     return (
       <div>
@@ -32,6 +37,7 @@ class Countdown extends React.Component {
             className="deadline-input"
             placeholder="New date"
             onChange={e => this.setState({ newDeadline: e.target.value })}
+            onKeyPress={e => (e.key === "Enter" ? this.onKeyEnter(e) : null)}
           />
           <Button bsStyle="primary" onClick={() => this.changeDeadline()}>
             Submit
