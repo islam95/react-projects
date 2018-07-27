@@ -27,4 +27,5 @@ input {
 
 .delete-button {
   float: right;
+  cursor: pointer;
 }

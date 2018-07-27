@@ -5,6 +5,7 @@ import {
   addReminder,
   deleteReminder
 } from "../../redux/actions/reminderActions";
+import moment from "moment";
 import "./Reminder.css";
 
 class Reminder extends Component {
@@ -24,15 +25,17 @@ class Reminder extends Component {
           return (
             <li key={reminder.id} className="list-group-item">
               <div className="list-item">
-                <div>{reminder.text}</div>
-                <div>{reminder.dueDate}</div>
+                <span style={{paddingRight: 20}}>{reminder.text}</span>
+                <span>
+                  <em>{moment(new Date(reminder.dueDate)).fromNow()}</em>
+                </span>
               </div>
-              <div
-                className="list-item delete-butto"
+              <span
+                className="list-item delete-button"
                 onClick={() => this.props.onDeleteReminder(reminder.id)}
               >
                 &#x2715;
-              </div>
+              </span>
             </li>
           );
         })}
@@ -62,7 +65,9 @@ class Reminder extends Component {
           />
           <Button
             bsStyle="success"
-            onClick={() => this.props.onAddReminder(this.state.text, this.state.dueDate)}
+            onClick={() =>
+              this.props.onAddReminder(this.state.text, this.state.dueDate)
+            }
           >
             Add Reminder
           </Button>

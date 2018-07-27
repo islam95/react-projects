@@ -27,7 +27,7 @@ class Countdown extends React.Component {
   render() {
     return (
       <div>
-        <h1>Countdown Component</h1>
+        <h1>Countdown</h1>
         <h4>
           Countdown to{" "}
           <span className="deadline-color">{this.props.deadline}</span>
