@@ -11,7 +11,8 @@ class Reminder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ""
+      text: "",
+      dueDate: ""
     };
   }
 
@@ -38,7 +39,7 @@ class Reminder extends Component {
 
   onKeyEnter(e) {
     e.preventDefault();
-    this.props.onAddReminder(this.state.text);
+    this.props.onAddReminder(this.state.text, this.state.dueDate);
   }
 
   render() {
@@ -52,9 +53,13 @@ class Reminder extends Component {
             onChange={e => this.setState({ text: e.target.value })}
             onKeyPress={e => (e.key === "Enter" ? this.onKeyEnter(e) : null)}
           />
+          <FormControl
+            type="datetime-local"
+            onChange={e => this.setState({ dueDate: e.target.value })}
+          />
           <Button
             bsStyle="success"
-            onClick={() => this.props.onAddReminder(this.state.text)}
+            onClick={() => this.props.onAddReminder(this.state.text, this.state.dueDate)}
           >
             Add Reminder
           </Button>
