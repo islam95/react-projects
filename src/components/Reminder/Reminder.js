@@ -3,7 +3,8 @@ import { Button, Form, FormControl } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
   addReminder,
-  deleteReminder
+  deleteReminder,
+  clearReminders
 } from "../../redux/actions/reminderActions";
 import moment from "moment";
 import "./Reminder.css";
@@ -25,7 +26,7 @@ class Reminder extends Component {
           return (
             <li key={reminder.id} className="list-group-item">
               <div className="list-item">
-                <span style={{paddingRight: 20}}>{reminder.text}</span>
+                <span style={{ paddingRight: 20 }}>{reminder.text}</span>
                 <span>
                   <em>{moment(new Date(reminder.dueDate)).fromNow()}</em>
                 </span>
@@ -73,6 +74,14 @@ class Reminder extends Component {
           </Button>
         </Form>
         {this.renderReminders()}
+        {this.props.reminders.length === 0 ? null : (
+          <Button
+            bsStyle="danger"
+            onClick={() => this.props.onClearReminders()}
+          >
+            Clear Reminders
+          </Button>
+        )}
       </div>
     );
   }
@@ -87,7 +96,8 @@ const mapStateToProps = state => {
 const dispatchToProps = dispatch => {
   return {
     onAddReminder: (text, dueDate) => dispatch(addReminder(text, dueDate)),
-    onDeleteReminder: id => dispatch(deleteReminder(id))
+    onDeleteReminder: id => dispatch(deleteReminder(id)),
+    onClearReminders: () => dispatch(clearReminders())
   };
 };
 
