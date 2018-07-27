@@ -4,11 +4,7 @@ import "./index.css";
 import App from "./components/App/App";
 import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./redux/reducers/reminderReducer";
-
-// Create a store with Redux DEV Tools in a browser
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import store from './redux/store/store';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -2,20 +2,21 @@ import React from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 import Clock from "./Clock";
 import "./Countdown.css";
+import { connect } from "react-redux";
+import {
+  changeDeadline
+} from "../../redux/actions/countdownActions";
 
 class Countdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deadline: "December 18, 2018",
       newDeadline: ""
     };
   }
 
   changeDeadline() {
-    this.setState({
-      deadline: this.state.newDeadline
-    });
+    this.props.onChangeDeadline(this.state.newDeadline);
   }
 
   onKeyEnter(e) {
@@ -29,9 +30,9 @@ class Countdown extends React.Component {
         <h1>Countdown Component</h1>
         <h4>
           Countdown to{" "}
-          <span className="deadline-color">{this.state.deadline}</span>
+          <span className="deadline-color">{this.props.deadline}</span>
         </h4>
-        <Clock deadline={this.state.deadline} />
+        <Clock deadline={this.props.deadline} />
         <Form inline>
           <FormControl
             className="deadline-input"
@@ -48,4 +49,19 @@ class Countdown extends React.Component {
   }
 }
 
-export default Countdown;
+const mapStateToProps = state => {
+  return {
+    deadline: state.countdownReducer
+  };
+};
+
+const dispatchToProps = dispatch => {
+  return {
+    onChangeDeadline: (date) => dispatch(changeDeadline(date))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  dispatchToProps
+)(Countdown);

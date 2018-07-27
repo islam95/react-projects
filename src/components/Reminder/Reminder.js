@@ -23,7 +23,10 @@ class Reminder extends Component {
         {reminders.map(reminder => {
           return (
             <li key={reminder.id} className="list-group-item">
-              <div className="list-item">{reminder.text}</div>
+              <div className="list-item">
+                <div>{reminder.text}</div>
+                <div>{reminder.dueDate}</div>
+              </div>
               <div
                 className="list-item delete-butto"
                 onClick={() => this.props.onDeleteReminder(reminder.id)}
@@ -72,13 +75,13 @@ class Reminder extends Component {
 
 const mapStateToProps = state => {
   return {
-    reminders: state
+    reminders: state.reminderReducer
   };
 };
 
 const dispatchToProps = dispatch => {
   return {
-    onAddReminder: text => dispatch(addReminder(text)),
+    onAddReminder: (text, dueDate) => dispatch(addReminder(text, dueDate)),
     onDeleteReminder: id => dispatch(deleteReminder(id))
   };
 };
