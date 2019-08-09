@@ -3,8 +3,8 @@ import countdownReducer from "../reducers/countdownReducer";
 import reminderReducer from "../reducers/reminderReducer";
 
 const rootReducer = combineReducers({
-  countdownReducer:countdownReducer,
-  reminderReducer:reminderReducer
+  countdownReducer,
+  reminderReducer
 });
 
 export default rootReducer;
