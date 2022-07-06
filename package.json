@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://islam95.github.io/react-projects",
   "dependencies": {
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
